@@ -1,0 +1,89 @@
+<header>
+    <!-- <img src="file:///resources/app.asar/src/assets/icons/logo.png" alt="logo"> -->
+    <img id="imgID" src="../../assets/icons/logo.png" alt="logo">
+    <h1 class="selected">Database</h1>
+</header>
+
+
+<div id="modal" *ngIf="modal" (click)="modalViewToggle()">
+  <div id="innerModal" (click)="$event.stopPropagation()">
+    <form ngNativeValidate #form>
+      <input type="number" id="min" class="form-control" placeholder="Min" [(ngModel)]="min" name="min" required autofocus>
+      <input type="number" id="max" class="form-control" placeholder="Max" [(ngModel)]="max" name="max" required>
+      <select name="column" id="column">
+        <option value="5">slab_width</option>
+        <option value="6">slab_start_width</option>
+        <option value="7">slab_end_width</option>
+        <option value="8">average_slab_width</option>
+        <option value="9">average_head_width</option>
+        <option value="10">average_body_width</option>
+        <option value="11">average_tail_width</option>
+        <option value="12">range_slab_width</option>
+        <option value="13">mode_slab_width</option>
+        <option value="14">mode_occurrence</option>
+      </select>
+      <input class="btn btn-lg btn-primary w-100" type="button" value="Filter" (click)="form.checkValidity()? filterById() : null"/>
+    </form>
+  </div>
+</div>
+
+
+<body>
+    <button id="logout" (click)="logout()">Logout</button>
+    <!-- <img *ngIf="loading && !error" src="file:///resources/app.asar/src/assets/icons/loader.gif" alt="loader" id="loader"> -->
+    <img *ngIf="loading && !error" src="../../assets/icons/loader.gif" alt="loader" id="loader">
+
+    <div *ngIf="error" id="error">
+        <!-- <img src="file:///resources/app.asar/src/assets/icons/warning.png" alt="error" id="warning"> -->
+        <img src="../../assets/icons/warning.png" alt="error" id="warning">
+        <h1>No Such ID Exists in the Database !</h1>
+    </div>
+    
+    <div *ngIf="!loading && !error" id="container">
+      <div>
+        <button  type="button" id="excelID" (click)="excelmaker()">Excel</button>
+        <!-- <button  type="button" id="pdfID" (click)="pdfMaker()">PDF</button> -->
+      </div>
+      <button id="modalViewToggle" type="button" (click)="modalViewToggle()">Filter</button>
+      <button id="loadDefault" (click)="reload()">Load Default</button>
+      
+      <table datatable [dtOptions]="dtOptions" id="table" *ngIf="!loading && !error" class="table table-striped table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>date_time</th>
+              <th>Unique_ID</th>
+              <th>Date_Time_DB</th>
+              <th>Slab_ID_DB</th>
+              <th>RD_No_DB</th>
+              <th>Slab_Width_DB</th>
+              <th>Slab_Length_DB</th>
+              <th>Slab_Start_Width</th>
+              <th>Slab_End_Width</th>
+              <th>Avg_Slab_Width</th>
+              <th>Avg_Head_Width</th>
+              <th>Avg_Body_Width</th>
+              <th>Avg_Tail_Width</th>
+              <th>Range_Slab_Width</th>
+              <th>Mode_Slab_Width</th>
+              <th>Mode_Occ_in_%</th>
+              <th>Slab_Type</th>
+              <th>Taper_Start</th>
+              <th>Cam-SPTS</th>
+              <th>Min_Width</th>
+              <th>Max_Width</th>
+              <th>Max-Avg</th>
+              <th>smallErr</th>
+              <th>Path</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let dataRow of dataFromDB" (click)="clickRow(dataRow[1])">
+              <td *ngFor="let data of dataRow">
+                {{data}}
+              </td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+  <button id="back" (click)="back()">Back</button>
+</body>

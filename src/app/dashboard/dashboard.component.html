@@ -1,0 +1,54 @@
+<header>
+    <!-- <img src="file:///resources/app.asar/src/assets/icons/logo.png" alt="logo"> -->
+    <img src="../../assets/icons/logo.png" alt="logo">
+</header>
+
+<body>
+    <div id="card">
+        <h2 id="subHeading1">Search By Date</h2>
+    </div>
+    <button id="logout" (click)="logout()">Logout</button>
+    <div id="datePick">
+        <div id="date">
+            <label for="start-date">Start Date: &nbsp;&nbsp;</label>
+            <input autocomplete="off" id="start-date" value="start date"/>
+        </div>
+        
+        <div id="date">
+            <label for="end-date">End Date: &nbsp;&nbsp;</label>
+            <input autocomplete="off" id="end-date"  value="end date"/>
+        </div>
+    </div>
+
+    <div id="timePick">
+        <div id="time">
+            <label for="start-time">Start Time: &nbsp;&nbsp;</label>
+            <input type="time" autocomplete="off" [(ngModel)]="startTime" id="start-time" value="start time"/>
+        </div>
+        
+        <div id="time">
+            <label for="end-time">End Time: &nbsp;&nbsp;</label>
+            <input type="time" autocomplete="off" [(ngModel)]="endTime"  id="end-time"  value="end time"/>
+        </div>
+    </div>
+
+    <button id="searchButton" (click)="searchDateTime()">Search</button>
+
+    <div id="cardSearch">
+        <h2 id="subHeading2">Search By ID</h2>
+    </div>
+    <div class="input-group rounded searchContainer" id="searchBar">
+        <select name="searchParam" id="searchParam">
+            <option value="slabID">
+                Slab ID
+            </option>
+            <option value="rundownNumber">
+                Rundown Number
+            </option>
+        </select>
+        <input type="search" class="form-control rounded" placeholder="Search ID" aria-label="Search" aria-describedby="search-addon" [(ngModel)]="searchQuery"/>
+        <button class="btn-primary btn" (click)="search()">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
+</body>

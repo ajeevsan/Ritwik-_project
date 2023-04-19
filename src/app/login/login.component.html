@@ -1,0 +1,12 @@
+<body>
+    <form ngNativeValidate #form>
+      <!-- <img src="file:///resources/app.asar/src/assets/icons/logo.png" alt="logo" id="logo"> -->
+      <img src="../../assets/icons/logo.png" alt="logo" id="logo">
+      <!-- <label>User ID</label> -->
+      <input type="text" id="UserID" class="form-control" placeholder="User ID" required autofocus>
+      <!-- <label for="inputPassword">Password</label> -->
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      
+      <input class="btn btn-lg btn-primary w-100" type="submit" value="Login" (click)="form.checkValidity()? login() : null"/>
+    </form>
+</body>

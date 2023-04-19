@@ -1,0 +1,276 @@
+<header>
+    <!-- <img src="file:///resources/app.asar/src/assets/icons/logo.png" alt="logo"> -->
+    <img src="../../assets/icons/logo.png" alt="logo">
+    <h1 class="selected">Database</h1>
+</header>
+
+<body>
+    <button id="logout" (click)="logout()">Logout</button>
+    <!-- <img *ngIf="loading && !error" src="file:///resources/app.asar/src/assets/icons/loader.gif" alt="loader" id="loader"> -->
+    <img *ngIf="loading && !error" src="../../assets/icons/loader.gif" alt="loader" id="loader">
+
+    <div *ngIf="error" id="error">
+        <!-- <img src="file:///resources/app.asar/src/assets/icons/warning.png" alt="error" id="warning"> -->
+        <img src="../../assets/icons/warning.png" alt="error" id="warning">
+        <h1>No Such ID Exists in the Database !</h1>
+    </div>
+    
+    <div *ngIf="!loading && !error" class="container datatable" style="position: absolute; overflow-y: auto; height: 500px; width: 40%; left: 21px; margin: 0 20px; ">
+        <table class="table" id="table">
+            <tr>
+                <td>
+                    date_time
+                </td>
+                <td>
+                    {{dataFromDB[0][0]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Unique_ID
+                </td>
+                <td>
+                    {{dataFromDB[0][1]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Date_Time_DB
+                </td>
+                <td>
+                    {{dataFromDB[0][2]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Slab_ID_DB
+                </td>
+                <td>
+                    {{dataFromDB[0][3]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    RunDown_Number_DB
+                </td>
+                <td>
+                    {{dataFromDB[0][4]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Slab_Width_DB
+                </td>
+                <td>
+                    {{dataFromDB[0][5]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Slab_Length_DB
+                </td>
+                <td>
+                    {{dataFromDB[0][6]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Slab_Start_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][7]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Slab_End_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][8]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Average_Slab_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][9]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Average_Head_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][10]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Average_Body_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][11]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Average_Tail_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][12]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Range_Slab_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][13]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mode_Slab_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][14]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Mode_Occurrence_in_%
+                </td>
+                <td>
+                    {{dataFromDB[0][15]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Slab_Type
+                </td>
+                <td>
+                    {{dataFromDB[0][16]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Taper_Start
+                </td>
+                <td>
+                    {{dataFromDB[0][17]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Diff_Cam_Width_SPTS
+                </td>
+                <td>
+                    {{dataFromDB[0][18]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Min_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][19]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Max_Width
+                </td>
+                <td>
+                    {{dataFromDB[0][20]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Diff_Max_Avg
+                </td>
+                <td>
+                    {{dataFromDB[0][21]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    smallSlabError
+                </td>
+                <td>
+                    {{dataFromDB[0][22]}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Path
+                </td>
+                <td>
+                    {{dataFromDB[0][23]}}
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <button id="pdf" (click)="savePDF()"><i class="fa fa-cloud-download " aria-hidden="true"></i>PDF</button>
+    <button id="excel" (click)="saveExcel()"><i class="fa fa-cloud-download" aria-hidden="true"></i>Excel</button>
+ 
+
+    <table *ngIf="!loading && !error" id="table2" class="th_data" class="container datatable" style="position: absolute; top: 18%; left: 52%">
+        <thead>
+            <tr>
+                <th class="th_data">
+                    Slab ID
+                </th>
+                <th class="th_data">
+                    RunDown Number
+                </th>
+                <th class="th_data">
+                    SPTS Width
+                </th>
+                <th class="th_data">
+                    Camera Width
+                </th>
+                <th class="th_data">
+                    Cam - SPTS
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="th_data">
+                    {{dataFromDB[0][1]}}
+                </td>
+                <td class="th_data">
+                    {{dataFromDB[0][4]}}
+                </td>
+                <td class="th_data">
+                    {{dataFromDB[0][5]}}
+                </td>
+                <td class="th_data">
+                    {{dataFromDB[0][20]}}
+                </td>
+                <td class="th_data">
+                    {{dataFromDB[0][18]}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="imageContainer">
+        <img *ngIf="img_flag" [src]="imgFromBackend" alt="img" style="position: absolute; height: 100%; width: 100%; z-index: 5; border-radius: 30px;"  (click)="enlarge()" id="img">
+    </div>
+    <div class="NoimageContainer">
+        <img *ngIf="!img_flag" src="../../assets/icons/no-data.png" alt="img"  style="position: absolute; height: 66px; width: 81px; left: 40%; top: 25%;">
+    </div>
+    <div *ngIf="showBIgImg" class="bigImageContainer" (click)="$event.stopPropagation()">
+        <img [src]="imgFromBackend" alt="img" class="bigImg" (click)="toggleBigImg()"  alt="">
+    </div>
+
+    <div *ngIf="!loading && !error" class="graphContainer">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <button id="back" (click)="back()">Back</button>
+</body>
